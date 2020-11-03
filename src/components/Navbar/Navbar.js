@@ -7,6 +7,10 @@ import './Navbar.elements.css';
 const Navbar = () => {
     const { modal, openModal } = useModalContext();
     
+    const openForm = () => {
+        openModal();
+    };
+    
     return (
         <nav className="navbar">
             <div className="nav-logo">
@@ -22,7 +26,7 @@ const Navbar = () => {
                     <li><FaTelegramPlane className="navbar-icon" /></li>
                     <li><FaRegCompass className="navbar-icon" /></li>
                     <li><FaRegHeart className="navbar-icon" /></li>
-                    <li>Register/Login</li>
+                    <li onClick={openForm}>Register/Login</li>
                 </ul>
             </div>
         </nav>
