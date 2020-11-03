@@ -1,12 +1,11 @@
 import React from 'react';
 import { FaRegCompass, FaRegHeart, FaSistrix, FaTelegramPlane } from 'react-icons/fa';
 import { MdHome } from 'react-icons/md';
+import { useModalContext } from '../../Contexts/Context';
 import './Navbar.elements.css';
 
 const Navbar = () => {
-    const openForm = () => {
-        
-    };
+    const { modal, openModal } = useModalContext();
     
     return (
         <nav className="navbar">
@@ -23,7 +22,7 @@ const Navbar = () => {
                     <li><FaTelegramPlane className="navbar-icon" /></li>
                     <li><FaRegCompass className="navbar-icon" /></li>
                     <li><FaRegHeart className="navbar-icon" /></li>
-                    <li onClick={openForm}>Register/Login</li>
+                    <li>Register/Login</li>
                 </ul>
             </div>
         </nav>
