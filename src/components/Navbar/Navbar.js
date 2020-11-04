@@ -1,11 +1,11 @@
 import React from 'react';
 import { FaRegCompass, FaRegHeart, FaSistrix, FaTelegramPlane } from 'react-icons/fa';
 import { MdHome } from 'react-icons/md';
-import { useModalContext } from '../../Contexts/Context';
+import { useAuth } from '../../Contexts/AuthContext';
 import './Navbar.elements.css';
 
 const Navbar = () => {
-    const { modal, openModal } = useModalContext();
+    const { modal, openModal } = useAuth();
     
     const openForm = () => {
         openModal();

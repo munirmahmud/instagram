@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
-import { useModalContext } from '../../Contexts/Context';
+import { useAuth } from '../../Contexts/AuthContext';
 import './Modal.elements.css';
 
 const Modal = () => {
-    const { modal, closeModal } = useModalContext();
+    const { modal, closeModal, register, error } = useAuth();
     const [state, setState] = useState({
         register: true,
         login: false
     });
+    const [inputs, setInputs] = useState({
+        username: '',
+        email: '',
+        password: ''
+    });
+
+    const handleInput = e => {
+        setInputs({
+            ...inputs,
+            [e.target.name]: e.target.value
+        });
+    };
 
     const formsToggle = () => {
         setState({
@@ -25,6 +37,13 @@ const Modal = () => {
         }
     };
 
+    const registerUser = e => {
+        e.preventDefault();
+
+        register(inputs);
+        setInputs({username: '', email: '', password: ''});
+    };
+
     return (
         <>
         {modal ? (
@@ -34,20 +53,22 @@ const Modal = () => {
                         <img src="/images/logo.png" alt="Instagram"/>
                     </div>
 
+                    {error && <div className="alert danger">{error}</div>}
+
                     {state.register ? 
                         <div className="modal-form">
-                            <form>
+                            <form onSubmit={registerUser}>
                                 <div className="form-group">
                                     <label className="sr-only" htmlFor="username">User Name</label>
-                                    <input type="text" name="username" id="username" className="form-control" placeholder="Username" />
+                                    <input type="text" name="username" id="username" className="form-control" placeholder="Username" value={inputs.username} onChange={handleInput} />
                                 </div>
                                 <div className="form-group">
                                     <label className="sr-only" htmlFor="email">Email</label>
-                                    <input type="email" name="email" id="email" className="form-control" placeholder="Email" />
+                                    <input type="email" name="email" id="email" className="form-control" placeholder="Email" value={inputs.email} onChange={handleInput} />
                                 </div>
                                 <div className="form-group">
                                     <label className="sr-only" htmlFor="password">Password</label>
-                                    <input type="password" name="password" id="password" className="form-control" placeholder="Password" />
+                                    <input type="password" name="password" id="password" className="form-control" placeholder="Password" value={inputs.password} onChange={handleInput} />
                                 </div>
                                 <div className="form-group">
                                     <button type="submit" className="btn btn-smart">Register</button>
