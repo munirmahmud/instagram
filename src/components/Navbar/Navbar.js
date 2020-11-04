@@ -14,6 +14,18 @@ const Navbar = () => {
     const userLogout = () => {
         logout();
     };
+
+    const checkUser = () => {
+        return !loader ? (
+            !loader && !user ? (
+                <li onClick={openForm}>Register/Login</li>
+            ) : (
+                <li>{user && user.displayName} / <span onClick={userLogout}>Logout</span></li>
+            )
+        ) : (
+            <li>{"..."}</li>
+        )
+    };
     
     return (
         <nav className="navbar">
@@ -30,11 +42,7 @@ const Navbar = () => {
                     <li><FaTelegramPlane className="navbar-icon" /></li>
                     <li><FaRegCompass className="navbar-icon" /></li>
                     <li><FaRegHeart className="navbar-icon" /></li>
-                    {!loader && !user ? (
-                        <li onClick={openForm}>Register/Login</li>
-                        ) : (
-                        <li>{user && user.displayName} / <span onClick={userLogout}>Logout</span></li>
-                    )}
+                    {checkUser()}
                 </ul>
             </div>
         </nav>
