@@ -48,6 +48,7 @@ const Modal = () => {
         e.preventDefault();
 
         login(inputs);
+        setInputs({email: '', password: ''});
     };
 
 

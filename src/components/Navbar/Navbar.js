@@ -5,10 +5,14 @@ import { useAuth } from '../../Contexts/AuthContext';
 import './Navbar.elements.css';
 
 const Navbar = () => {
-    const { modal, openModal } = useAuth();
+    const { openModal, user, loader, logout } = useAuth();
     
     const openForm = () => {
         openModal();
+    };
+
+    const userLogout = () => {
+        logout();
     };
     
     return (
@@ -26,7 +30,11 @@ const Navbar = () => {
                     <li><FaTelegramPlane className="navbar-icon" /></li>
                     <li><FaRegCompass className="navbar-icon" /></li>
                     <li><FaRegHeart className="navbar-icon" /></li>
-                    <li onClick={openForm}>Register/Login</li>
+                    {!loader && !user ? (
+                        <li onClick={openForm}>Register/Login</li>
+                        ) : (
+                        <li>{user && user.displayName} / <span onClick={userLogout}>Logout</span></li>
+                    )}
                 </ul>
             </div>
         </nav>
