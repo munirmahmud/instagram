@@ -1,5 +1,6 @@
+import firebase from 'firebase';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { auth, storage } from '../config';
+import { auth, db, storage } from '../config';
 
 const AuthContext = createContext();
 
@@ -65,6 +66,18 @@ const ContextProvider = ({ children }) => {
             
         }, (error) => {
             setError(error);
+        }, () => {
+            storage.ref("images")
+                .child(image.name)
+                .getDownloadURL()
+                .then(url => {
+                    db.collection('posts').add({
+                        title,
+                        image: url,
+                        username: user.displayName,
+                        currentTime: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                })
         });
     };
 

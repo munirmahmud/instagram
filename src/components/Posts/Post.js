@@ -15,7 +15,9 @@ const Post = () => {
     const createPost = e => {
         e.preventDefault();
     
-        create({ title, image });          
+        create({ title, image });
+        setTitle('');
+        setImage('');
     };
     
     return (
