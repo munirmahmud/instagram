@@ -83,7 +83,7 @@ const Modal = () => {
                                 </div>
                             </form>
 
-                            <div className="text-center form-text">
+                            <div className="text-center link-text">
                                 Already have an account? <span onClick={formsToggle}>Login</span>
                             </div>
                         </div>
@@ -103,7 +103,7 @@ const Modal = () => {
                                 </div>
                             </form>
 
-                            <div className="text-center form-text">
+                            <div className="text-center link-text">
                                 Create a new <span onClick={formsToggle}>Account</span>
                             </div>
                         </div>

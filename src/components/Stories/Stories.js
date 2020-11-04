@@ -15,19 +15,17 @@ const Stories = () => {
     ]);
 
     return (
-        <div className="container mt-80">
-            <div className="stories">
-                {stories && stories.map(user => (
-                    <div key={user.id} className="story_info">
-                        <div className="story-image">
-                            <span>
-                                <img src={user.image} alt={user.name} />
-                            </span>
-                        </div>
-                        <div className="story_name">{user.name}</div>
+        <div className="stories">
+            {stories && stories.map(user => (
+                <div key={user.id} className="story_info">
+                    <div className="story-image">
+                        <span>
+                            <img src={user.image} alt={user.name} />
+                        </span>
                     </div>
-                ))}
-            </div>
+                    <div className="story_name">{user.name}</div>
+                </div>
+            ))}
         </div>
     )
 }

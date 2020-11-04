@@ -1,0 +1,36 @@
+.posts {
+    width: 70%;
+}
+.post {
+    margin-top: 30px;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #efefef;
+    border-radius: 3px;
+}
+.post-content input {
+    width: 100%;
+    height: 40px;
+    padding: 0 13px;
+    border: 1px solid #efefef;
+    outline: none;
+    border-radius: 2px ;
+}
+
+.post-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.upload-file {
+
+}
+.file {
+    display: none;
+}
+.camera-icon {
+    color: #ef3a63;
+    font-size: 30px;
+    cursor: pointer;
+}
