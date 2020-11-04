@@ -96,6 +96,7 @@ const ContextProvider = ({ children }) => {
                     title: doc.data().title,
                     image: doc.data().image,
                     username: doc.data().username,
+                    postedTime: doc.data().currentTime.seconds,
                 })));
             });
     }, []);

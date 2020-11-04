@@ -25,15 +25,16 @@ const CreatePost = () => {
             <div className="post">
                 <form onSubmit={createPost}>
                     <div className="post-content">
-                        <input type="text" name="post" id="post" placeholder="What are in your mind?" onChange={(e) => setTitle(e.target.value)} value={title} />
+                        <textarea name="post" id="post" placeholder="What are in your mind?" value={title} onChange={(e) => setTitle(e.target.value)} cols="30" rows="4" />
                     </div>
-                    <div className="post-footer">
+                    <div className="create-post-footer">
                         <div className="upload-file">
                             <label htmlFor="file">
                                 <span className="sr-only">Upload</span>
                                 <FaCamera className="camera-icon" />
                             </label>
-                            <input type="file" className="file" id="file" onChange={handleImage} />
+                            <input type="file" className="sr-only" id="file" onChange={handleImage} />
+                            {image.name && <span>{image.name}</span>}                            
                         </div>
                         <div className="submit-post">
                             <button type="submit" className="btn btn-smart">Create</button>
