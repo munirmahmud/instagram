@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { auth } from '../config';
+import { auth, storage } from '../config';
 
 const AuthContext = createContext();
 
@@ -55,15 +55,30 @@ const ContextProvider = ({ children }) => {
         });
     };
 
+    const create = data => {
+        const { title, image } = data;
+        const uploadFile = storage.ref(`images/${image.name}`).put(image);
+
+        uploadFile.on("state_changed", (snapshot) => {
+
+            let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            
+        }, (error) => {
+            setError(error);
+        });
+    };
+
     useEffect(() => {
         auth.onAuthStateChanged(user => {
             setUser(user);
             setLoader(false);
-        })
+        }, (error) => {
+
+        });
     }, []);
 
     return (
-        <AuthContext.Provider value={{ modal, openModal, closeModal, register, error, login, user, loader, logout }}>
+        <AuthContext.Provider value={{ modal, openModal, closeModal, register, error, login, user, loader, logout, create }}>
             {children}
         </AuthContext.Provider>
     )
