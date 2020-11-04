@@ -13,6 +13,7 @@ const ContextProvider = ({ children }) => {
     const [error, setError] = useState('');
     const [user, setUser] = useState(null);
     const [loader, setLoader] = useState(true);
+    const [posts, setPosts] = useState([]);
 
     const openModal = () => {
         return setModal(true);
@@ -77,7 +78,7 @@ const ContextProvider = ({ children }) => {
                         username: user.displayName,
                         currentTime: firebase.firestore.FieldValue.serverTimestamp()
                     });
-                })
+                });
         });
     };
 
@@ -85,13 +86,22 @@ const ContextProvider = ({ children }) => {
         auth.onAuthStateChanged(user => {
             setUser(user);
             setLoader(false);
-        }, (error) => {
-
         });
+
+        db.collection('posts')
+            .orderBy('currentTime', 'desc')
+            .onSnapshot(snapshot => {
+                setPosts(snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    title: doc.data().title,
+                    image: doc.data().image,
+                    username: doc.data().username,
+                })));
+            });
     }, []);
 
     return (
-        <AuthContext.Provider value={{ modal, openModal, closeModal, register, error, login, user, loader, logout, create }}>
+        <AuthContext.Provider value={{ modal, openModal, closeModal, register, error, login, user, loader, logout, create, posts }}>
             {children}
         </AuthContext.Provider>
     )

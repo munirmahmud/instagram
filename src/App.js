@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
+import CreatePost from './components/CreatePost/CreatePost';
 import Modal from './components/Modal/Modal';
 import Navbar from './components/Navbar/Navbar';
-import Post from './components/Posts/Post';
+import Posts from './components/Posts/Posts';
 import Stories from './components/Stories/Stories';
 import ContextProvider from './Contexts/AuthContext';
 
@@ -12,7 +13,8 @@ const App = () => {
             <Navbar />
             <div className="container mt-80">
                 <Stories />
-                <Post />
+                <CreatePost />
+                <Posts />
             </div>
             <Modal />
         </ContextProvider>

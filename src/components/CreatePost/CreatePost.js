@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { FaCamera } from 'react-icons/fa';
 import { useAuth } from '../../Contexts/AuthContext';
-import './Post.elements.css';
+import './CreatePost.elements.css';
 
-const Post = () => {
+const CreatePost = () => {
     const [title, setTitle] = useState("");
     const [image, setImage] = useState({});
     const { create } = useAuth();
@@ -21,7 +21,7 @@ const Post = () => {
     };
     
     return (
-        <div className="posts">
+        <div className="creat-post">
             <div className="post">
                 <form onSubmit={createPost}>
                     <div className="post-content">
@@ -45,4 +45,4 @@ const Post = () => {
     )
 }
 
-export default Post
+export default CreatePost;
