@@ -32,8 +32,19 @@ const ContextProvider = ({ children }) => {
         }
     };
 
+    const login = async user => {
+        const {email, password} = user;
+        
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+            setModal(false);
+        } catch (error) {
+            setError(error.message);
+        }
+    }
+
     return (
-        <AuthContext.Provider value={{ modal, openModal, closeModal, register, error }}>
+        <AuthContext.Provider value={{ modal, openModal, closeModal, register, error, login }}>
             {children}
         </AuthContext.Provider>
     )

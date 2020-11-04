@@ -3,7 +3,7 @@ import { useAuth } from '../../Contexts/AuthContext';
 import './Modal.elements.css';
 
 const Modal = () => {
-    const { modal, closeModal, register, error } = useAuth();
+    const { modal, closeModal, register, error, login } = useAuth();
     const [state, setState] = useState({
         register: true,
         login: false
@@ -44,6 +44,13 @@ const Modal = () => {
         setInputs({username: '', email: '', password: ''});
     };
 
+    const userLogin = e => {
+        e.preventDefault();
+
+        login(inputs);
+    };
+
+
     return (
         <>
         {modal ? (
@@ -81,14 +88,14 @@ const Modal = () => {
                         </div>
                     : 
                         <div className="modal-form">
-                            <form>
+                            <form onSubmit={userLogin}>
                                 <div className="form-group">
                                     <label className="sr-only" htmlFor="email">Email</label>
-                                    <input type="email" name="email" id="email" className="form-control" placeholder="Email" />
+                                    <input type="email" name="email" id="email" className="form-control" placeholder="Email" value={inputs.email} onChange={handleInput} />
                                 </div>
                                 <div className="form-group">
                                     <label className="sr-only" htmlFor="password">Password</label>
-                                    <input type="password" name="password" id="password" className="form-control" placeholder="Password" />
+                                    <input type="password" name="password" id="password" className="form-control" placeholder="Password" value={inputs.password} onChange={handleInput} />
                                 </div>
                                 <div className="form-group">
                                     <button type="submit" className="btn btn-smart">Login</button>
@@ -100,8 +107,6 @@ const Modal = () => {
                             </div>
                         </div>
                     }
-                    
-                    
                 </div>
             </div>
         ) : ("")}
