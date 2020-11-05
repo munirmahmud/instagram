@@ -10,6 +10,8 @@ const Comments = ({ postId }) => {
 
     const postComment = (e) => {
         e.preventDefault();
+
+        if (!state) return;
         
         publishComment({
             id: postId,
@@ -25,18 +27,17 @@ const Comments = ({ postId }) => {
         });
     }, []);
 
-    console.log(comments);
-    
     return (
         <div className="comments">
             <div className="comments-wrapper">
-                {comments && comments.map(comment => (
-                    <div key={comment.id} className="comment-content">
+                {comments && comments.map((comment, index) => (
+                    <div key={index} className="comment-content">
                         <strong>{comment.username} </strong>
                         {comment.comment}
                     </div>
                 ))}
             </div>
+            
             {!loader && user ? (
                 <form className="comment-form" onSubmit={postComment}>
                     <textarea name="comment" cols="30" rows="2" placeholder="Add comment..." onChange={e => setState(e.target.value)} value={state} />

@@ -4,17 +4,13 @@ import { BiBookmark } from 'react-icons/bi';
 import { FaRegComment } from 'react-icons/fa';
 import { IoMdPaperPlane } from 'react-icons/io';
 import { useAuth } from '../../Contexts/AuthContext';
-import { msToTime } from '../../helpers';
+import { getFirstLetter, msToTime } from '../../helpers';
 import Comments from '../Comments/Comments';
 import './Post.elements.css';
 
 
 const Posts = () => {
     const { posts } = useAuth();
-    
-    const getFirstLetter = name => {
-        return name.substr(0, 1).toUpperCase();
-    }
 
     return (
         <div className="posts">

@@ -12,3 +12,10 @@ export const msToTime = (duration) => {
 
     return postedTime.toUpperCase();
 };
+
+
+export const getFirstLetter = (name) => {
+    if (!name) return;
+        
+    return name.substr(0, 1).toUpperCase();
+};

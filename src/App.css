@@ -14,7 +14,52 @@ body {
 
 .container {
     width: 100%;
-    padding: 0 200px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+@media (min-width: 576px) {
+    .container {
+      max-width: 540px;
+    }
+}
+  
+@media (min-width: 768px) {
+    .container {
+      max-width: 720px;
+    }
+}
+  
+@media (min-width: 992px) {
+    .container {
+      max-width: 960px;
+    }
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.col-9, .col-3 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-9 {
+    -ms-flex: 0 0 66%;
+    flex: 0 0 66%;
+    max-width: 66%;
+}
+.col-3 {
+    -ms-flex: 0 0 34%;
+    flex: 0 0 34%;
+    max-width: 34%;
 }
 
 .mt-80 {

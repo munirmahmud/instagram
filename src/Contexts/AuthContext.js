@@ -90,7 +90,6 @@ const ContextProvider = ({ children }) => {
             username: user.displayName,
             currentTime: firebase.firestore.FieldValue.serverTimestamp(),
         });
-        
     };
 
     useEffect(() => {
@@ -107,10 +106,10 @@ const ContextProvider = ({ children }) => {
                     title: doc.data().title,
                     image: doc.data().image,
                     username: doc.data().username,
-                    postedTime: doc.data().currentTime.seconds,
+                    postedTime: doc.data().currentTime,
                 })));
             });
-    }, []);
+    }, [user, loader]);
 
     return (
         <AuthContext.Provider value={{ modal, openModal, closeModal, register, error, login, user, loader, logout, create, posts, publishComment }}>
