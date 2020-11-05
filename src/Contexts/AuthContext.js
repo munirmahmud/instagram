@@ -82,6 +82,17 @@ const ContextProvider = ({ children }) => {
         });
     };
 
+    const publishComment = (data) => {
+        const {id, comment} = data;
+
+        db.collection('posts').doc(id).collection('comments').add({
+            comment,
+            username: user.displayName,
+            currentTime: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+        
+    };
+
     useEffect(() => {
         auth.onAuthStateChanged(user => {
             setUser(user);
@@ -102,7 +113,7 @@ const ContextProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ modal, openModal, closeModal, register, error, login, user, loader, logout, create, posts }}>
+        <AuthContext.Provider value={{ modal, openModal, closeModal, register, error, login, user, loader, logout, create, posts, publishComment }}>
             {children}
         </AuthContext.Provider>
     )

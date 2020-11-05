@@ -63,7 +63,27 @@ const Modal = () => {
 
                     {error && <div className="alert danger">{error}</div>}
 
-                    {state.register ? 
+                    {state.register ? (
+                        <div className="modal-form">
+                            <form onSubmit={userLogin}>
+                                <div className="form-group">
+                                    <label className="sr-only" htmlFor="email">Email</label>
+                                    <input type="email" name="email" id="email" className="form-control" placeholder="Email" value={inputs.email} onChange={handleInput} />
+                                </div>
+                                <div className="form-group">
+                                    <label className="sr-only" htmlFor="password">Password</label>
+                                    <input type="password" name="password" id="password" className="form-control" placeholder="Password" value={inputs.password} onChange={handleInput} />
+                                </div>
+                                <div className="form-group">
+                                    <button type="submit" className="btn btn-smart">Login</button>
+                                </div>
+                            </form>
+
+                            <div className="text-center link-text">
+                                Create a new <span onClick={formsToggle}>Account</span>
+                            </div>
+                        </div>
+                    ) : ( 
                         <div className="modal-form">
                             <form onSubmit={registerUser}>
                                 <div className="form-group">
@@ -87,27 +107,7 @@ const Modal = () => {
                                 Already have an account? <span onClick={formsToggle}>Login</span>
                             </div>
                         </div>
-                    : 
-                        <div className="modal-form">
-                            <form onSubmit={userLogin}>
-                                <div className="form-group">
-                                    <label className="sr-only" htmlFor="email">Email</label>
-                                    <input type="email" name="email" id="email" className="form-control" placeholder="Email" value={inputs.email} onChange={handleInput} />
-                                </div>
-                                <div className="form-group">
-                                    <label className="sr-only" htmlFor="password">Password</label>
-                                    <input type="password" name="password" id="password" className="form-control" placeholder="Password" value={inputs.password} onChange={handleInput} />
-                                </div>
-                                <div className="form-group">
-                                    <button type="submit" className="btn btn-smart">Login</button>
-                                </div>
-                            </form>
-
-                            <div className="text-center link-text">
-                                Create a new <span onClick={formsToggle}>Account</span>
-                            </div>
-                        </div>
-                    }
+                    )}
                 </div>
             </div>
         ) : ("")}

@@ -18,8 +18,8 @@ const Posts = () => {
 
     return (
         <div className="posts">
-            {posts.length ? posts.map((post, index) => (
-                <div key={index} className="post-content">
+            {posts.length ? posts.map(post => (
+                <div key={post.id} className="post-content">
                     <div className="header">
                         <div className="avatar">{getFirstLetter(post.username)}</div>
                         <div className="username">{post.username}</div>
@@ -47,7 +47,7 @@ const Posts = () => {
                                 {post.postedTime && msToTime(post.postedTime)}
                             </time>
                         </div>
-                        <Comments />
+                        <Comments postId={post.id} />
                     </div>
                 </div>
 
